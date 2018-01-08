@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Heading</h2>
+
+            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Heading</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
+                mauris
+                condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis
+                euismod. Donec sed odio dui. </p>
+            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Heading</h2>
+            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula
+                porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
+                ut
+                fermentum massa justo sit amet risus.</p>
+            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+    </div>
+
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    {{ form.as_p }}
+                    <div id="uploader" class="hidden">
+                        <p class="text-danger text-center">
+                            {% trans 'Su navegador no tiene soporte para Flash, Silverlight o HTML5.' %}
+                        </p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript">
+
+        var uploader = false;
+        function generate_upload_widget(id_filetype) {
+            // Hakai to widget if exists
+            if (uploader.plupload) uploader.plupload('destroy');
+
+            // Object for uploader widget
+            uploader = $('#uploader');
+
+            // Form data
+            var id_job = $('#id_job').val();
+            var id_job_damage = $('#id_job_damage').val();
+
+            // Show and genereate when filetype selected
+            if (id_filetype !== '') {
+                // Obtain filters
+                $.post("{% url 'ajax_common_get_file_filters' %}",
+                    {
+                        file_type: id_filetype,
+                        job_damage: id_job_damage,
+
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                    })
+                    .done(function (data) {
+                        // Generate filters
+                        var mime_types_filters = [];
+                        for (var I in data)
+                            mime_types_filters.push(
+                                {
+                                    title: data[I].fields.name,
+                                    extensions: (data[I].fields.file_extension).join()
+                                });
+
+                        // Generate and show widget
+                        uploader.removeClass('hidden');
+                        uploader.plupload({
+                            // Runtime settings
+                            runtimes: 'html5,flash,silverlight,html4',
+                            flash_swf_url: '{% static 'plupload-2.3.6/Moxie.swf' %}',
+                            silverlight_xap_url: '{% static 'plupload-2.3.6/Moxie.xap' %}',
+                            url: "{% url 'ajax_create_file' %}",
+
+                            // General settings
+                            max_file_count: data[0].fields.num_files,
+                            rename: false,
+                            sortable: true,
+                            dragdrop: true,
+
+                            // Specify what files to browse for
+                            filters: {
+                                mime_types: mime_types_filters,
+                                max_file_size: (data[0].fields.max_size) + 'kb',
+                                prevent_duplicates: true
+                            },
+
+                            {#                            // Resize for image#}
+                            {#                            resize: {#}
+                            {#                                width: 1024,#}
+                            {#                                height: 768,#}
+                            {#                                quality: 70#}
+                            {#                            },#}
+                            {##}
+                            // Views to activate
+                            views: {
+                                list: true,
+                                thumbs: true,
+                                active: 'list'
+                            },
+
+                            // Multipart data params
+                            multipart: true,
+                            multipart_params: {
+                                job: id_job,
+                                job_damage: id_job_damage,
+                                file_type: id_filetype,
+
+                                csrfmiddlewaretoken: '{{ csrf_token }}'
+                            },
+
+                            // Post init events, bound after the internal events
+                            init: {
+                                FileUploaded: function (up, file, info) {
+                                    // Called when file has finished uploading
+                                },
+                                UploadComplete: function (up, files) {
+                                    // Called when all files are either uploaded or failed
+                                    load_list_file();
+                                }
+                            }
+                        });
+                    });
+            }
+            else {
+                uploader.addClass('hidden');
+                uploader = false;
+            }
+        }
+
+    </script>
+
+{% endblock %}
+
+<!-- Modal -->
