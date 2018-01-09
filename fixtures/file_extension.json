@@ -1,6 +1,6 @@
 [
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 1,
   "fields": {
     "extension": "aac",
@@ -10,7 +10,7 @@
   }
 },
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 2,
   "fields": {
     "extension": "avi",
@@ -20,7 +20,7 @@
   }
 },
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 3,
   "fields": {
     "extension": "css",
@@ -30,7 +30,7 @@
   }
 },
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 4,
   "fields": {
     "extension": "doc",
@@ -40,7 +40,7 @@
   }
 },
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 5,
   "fields": {
     "extension": "docx",
@@ -50,7 +50,7 @@
   }
 },
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 6,
   "fields": {
     "extension": "exe",
@@ -60,7 +60,7 @@
   }
 },
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 7,
   "fields": {
     "extension": "gif",
@@ -70,7 +70,7 @@
   }
 },
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 8,
   "fields": {
     "extension": "htm",
@@ -80,7 +80,7 @@
   }
 },
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 9,
   "fields": {
     "extension": "html",
@@ -90,7 +90,7 @@
   }
 },
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 10,
   "fields": {
     "extension": "jpeg",
@@ -100,7 +100,7 @@
   }
 },
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 11,
   "fields": {
     "extension": "jpg",
@@ -110,7 +110,7 @@
   }
 },
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 12,
   "fields": {
     "extension": "js",
@@ -120,7 +120,7 @@
   }
 },
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 13,
   "fields": {
     "extension": "json",
@@ -130,7 +130,7 @@
   }
 },
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 14,
   "fields": {
     "extension": "mp3",
@@ -140,7 +140,7 @@
   }
 },
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 15,
   "fields": {
     "extension": "mpg",
@@ -150,7 +150,7 @@
   }
 },
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 16,
   "fields": {
     "extension": "pdf",
@@ -160,7 +160,7 @@
   }
 },
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 17,
   "fields": {
     "extension": "png",
@@ -170,7 +170,7 @@
   }
 },
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 18,
   "fields": {
     "extension": "ppsx",
@@ -180,7 +180,7 @@
   }
 },
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 19,
   "fields": {
     "extension": "ppt",
@@ -190,7 +190,7 @@
   }
 },
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 20,
   "fields": {
     "extension": "pptx",
@@ -200,7 +200,7 @@
   }
 },
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 21,
   "fields": {
     "extension": "rar",
@@ -210,7 +210,7 @@
   }
 },
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 22,
   "fields": {
     "extension": "swf",
@@ -220,7 +220,7 @@
   }
 },
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 23,
   "fields": {
     "extension": "tiff",
@@ -230,7 +230,7 @@
   }
 },
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 24,
   "fields": {
     "extension": "txt",
@@ -240,7 +240,7 @@
   }
 },
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 25,
   "fields": {
     "extension": "wav",
@@ -250,7 +250,7 @@
   }
 },
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 26,
   "fields": {
     "extension": "xls",
@@ -260,7 +260,7 @@
   }
 },
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 27,
   "fields": {
     "extension": "xlsx",
@@ -270,7 +270,7 @@
   }
 },
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 28,
   "fields": {
     "extension": "xml",
@@ -280,7 +280,7 @@
   }
 },
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 29,
   "fields": {
     "extension": "zip",
@@ -290,7 +290,7 @@
   }
 },
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 30,
   "fields": {
     "extension": "mpeg",
@@ -300,7 +300,7 @@
   }
 },
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 31,
   "fields": {
     "extension": "mkv",
@@ -310,7 +310,7 @@
   }
 },
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 32,
   "fields": {
     "extension": "wmv",
@@ -320,7 +320,7 @@
   }
 },
 {
-  "model": "common.fileextension",
+  "model": "sample.fileextension",
   "pk": 33,
   "fields": {
     "extension": "wma",
