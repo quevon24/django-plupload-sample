@@ -30,16 +30,16 @@ class FileForm(forms.ModelForm):
         required=False
     )
 
-    file_date = forms.DateField(
-        widget=forms.DateInput(
-            attrs={
-                'class': 'form-control',
-                'readonly': ''
-            }
-        ),
-        label=_(u'Fecha del archivo'),
-        required=False
-    )
+    # file_date = forms.DateField(
+    #     widget=forms.DateInput(
+    #         attrs={
+    #             'class': 'form-control',
+    #             'readonly': ''
+    #         }
+    #     ),
+    #     label=_(u'Fecha del archivo'),
+    #     required=False
+    # )
 
     description = forms.CharField(
         widget=forms.Textarea(
@@ -61,4 +61,4 @@ class FileForm(forms.ModelForm):
 
     class Meta:
         model = File
-        fields = ['file_date', 'file_type', 'file', 'description']
+        fields = ['file_type', 'file', 'description']
