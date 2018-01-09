@@ -2,6 +2,8 @@
 from __future__ import unicode_literals
 from django.utils.translation import ugettext as _
 from django.http import HttpResponse
+
+from sample.forms import FileForm
 from sample.models import File, FileType
 import json
 
@@ -10,13 +12,13 @@ def create_file(request):
     """ Add file """
     data = {'status': None, 'message': None}
 
-    if request.is_ajax() and request.method == 'POST':
-        file = request.POST.getlist('file[]')
+    if request.method == 'POST' and request.FILES:
 
-        for file_id in file:
-            File.objects.create(file_id=file_id)
+        file_form = FileForm(data=request.POST, files=request.FILES)
+        file_form.save(commit=True)
 
         data['status'] = 200
+        data['message'] = _(u'Archivo cargado correctamente')
 
     else:
         # Data to generate response when id invalid

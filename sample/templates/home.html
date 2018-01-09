@@ -2,8 +2,6 @@
 {% load i18n %}
 {% load static %}
 
-
-
 {% block content %}
 
     <div class="row">
@@ -60,6 +58,7 @@
     <script type="text/javascript">
 
         var uploader = false;
+
         function generate_upload_widget(id_filetype) {
             // Hakai to widget if exists
             if (uploader.plupload) uploader.plupload('destroy');
@@ -70,9 +69,13 @@
             // Form data
             var id_job = $('#id_job').val();
             var id_job_damage = $('#id_job_damage').val();
+            var id_quantification_damage = $('#id_quantification_damage').val();
 
             // Show and genereate when filetype selected
             if (id_filetype !== '') {
+                // Hide existing files
+                $('#unassigned_files_container, #unassigned_files_button').hide();
+
                 // Obtain filters
                 $.post("{% url 'ajax_common_get_file_filters' %}",
                     {
@@ -84,20 +87,19 @@
                     .done(function (data) {
                         // Generate filters
                         var mime_types_filters = [];
-                        for (var I in data)
-                            mime_types_filters.push(
-                                {
-                                    title: data[I].fields.name,
-                                    extensions: (data[I].fields.file_extension).join()
-                                });
+                        for (var I in data) mime_types_filters.push(
+                            {
+                                title: data[I].fields.name,
+                                extensions: (data[I].fields.file_extension).join()
+                            });
 
                         // Generate and show widget
                         uploader.removeClass('hidden');
                         uploader.plupload({
                             // Runtime settings
                             runtimes: 'html5,flash,silverlight,html4',
-                            flash_swf_url: '{% static 'plupload-2.3.6/Moxie.swf' %}',
-                            silverlight_xap_url: '{% static 'plupload-2.3.6/Moxie.xap' %}',
+                            flash_swf_url: '{% static 'plupload-2.3.1/js/Moxie.swf' %}',
+                            silverlight_xap_url: '{% static 'plupload-2.3.1/js/Moxie.xap' %}',
                             url: "{% url 'ajax_create_file' %}",
 
                             // General settings
@@ -114,12 +116,12 @@
                             },
 
                             {#                            // Resize for image#}
-                            {#                            resize: {#}
+                            {#                            resize : {#}
                             {#                                width: 1024,#}
                             {#                                height: 768,#}
-                            {#                                quality: 70#}
+                            {#                                quality: 90#}
                             {#                            },#}
-                            {##}
+
                             // Views to activate
                             views: {
                                 list: true,
@@ -132,6 +134,7 @@
                             multipart_params: {
                                 job: id_job,
                                 job_damage: id_job_damage,
+                                quantification_damage: id_quantification_damage,
                                 file_type: id_filetype,
 
                                 csrfmiddlewaretoken: '{{ csrf_token }}'
@@ -141,10 +144,11 @@
                             init: {
                                 FileUploaded: function (up, file, info) {
                                     // Called when file has finished uploading
+
                                 },
                                 UploadComplete: function (up, files) {
                                     // Called when all files are either uploaded or failed
-                                    load_list_file();
+                                    // window.location.reload();
                                 }
                             }
                         });

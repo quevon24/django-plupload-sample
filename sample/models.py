@@ -28,7 +28,7 @@ def upload_reformat_name(instance, filename, related_model=None):
 
 
 def upload_file_path(instance, filename):
-    return upload_reformat_name(instance, filename, instance.job)
+    return upload_reformat_name(instance, filename, instance)
 
 
 class FileTypeGroup(models.Model):
